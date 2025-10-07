@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Fiskeben VAM</title>
+  <meta name="viewport" content="width=1122, initial-scale=1.0">
+
+    <!-- Ekstern CSS med versions-tag (til cache-busting) -->
+    <link rel="stylesheet" href="style.css?v=20251006">
+</head>
+
+<body>
+  <!-- Hjælp-knap -->
+  <div id="helpBtn" title="Få hjælp til at komme igang!">❓</div>
+
+  <!-- Hjælp-boks -->
+  <div id="helpOverlay" class="hidden">
+    <div class="help-content">
+      <button class="closeHelp" title="Luk hjælp">&times;</button>
+      <div class="help-title">Hjælp til Fiskeben VAM</div>
+      <ul>
+        <li>Klik hvor som helst på fiskebenet for at tilføje en årsag.</li>
+        <li>Træk og slip for at flytte årsager.</li>
+        <li>Dobbeltklik på en boks for at redigere eller slette.</li>
+        <li>Klik på 5xWhy-ikonet (<span style="color:#3870d0">5xWHY?</span>) for at lave en analyse.</li>
+        <li>Alle dine ændringer kan gemmes og åbnes igen.</li>
+        <li>Har du spørgsmål? Skriv til supporten!</li>
+      </ul>
+      <div class="help-footer">Tak fordi du bruger Fiskeben VAM!</div>
+    </div>
+  </div>
+
+  <h1>Fiskeben VAM</h1>
+
+  <div class="container">
+    <div class="diagram-container" id="diagramArea">
+      <!-- SVG med g#ishikawa som mål for tegning -->
+      <svg id="fishboneSvg" width="1122" height="793">
+        <g id="ishikawa"></g>
+      </svg>
+
+      <!-- Årsagsbokse -->
+      <div id="causes"></div>
+
+      <!-- Problemfelt -->
+      <div id="problemBox"
+           contenteditable="true"
+           data-placeholder="Problemet skrives her"
+           title="Skriv problemet her"
+           class="placeholder">
+      </div>
+    </div>
+
+    <div class="controls">
+      <span>TIP: Klik på fiskebenet for at placere/redigere årsager.</span>
+      <button id="savePdfBtn">Gem alt som PDF</button>
+      <button id="showWhyBtn">Åben bilag som HTML</button>
+      <button id="saveProjectBtn">Gem projekt</button>
+
+      <!-- Fil-input (skjules via CSS) åbnes af knap -->
+      <input type="file" id="loadProjectFile" accept=".json">
+      <button id="openProjectBtn">Åbn projekt</button>
+    </div>
+  </div>
+
+  <!-- Tilføj årsag-popup -->
+  <div id="popup" class="custom-popup">
+    <input type="text" id="popupText" placeholder="Skriv årsag her">
+    <br>
+    <button id="addCauseBtn">Tilføj</button>
+    <button id="cancelCauseBtn">Annuller</button>
+  </div>
+
+  <!-- 5xWhy popup + backdrop -->
+  <div id="whyPopup" class="why-popup"></div>
+  <div id="whyBackdrop" class="hidden"></div>
+
+  <!-- PDF bilag og HTML visning -->
+  <div id="pdf-supplements"></div>
+  <div id="whyBilagHtml"></div>
+
+  <!-- Scripts: html2pdf før din app, begge med versions-tag -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js?v=20251006"></script>
+  <script defer src="script.js?v=20251006"></script>
+</body>
+</html>
